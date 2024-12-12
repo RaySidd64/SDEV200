@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>Problem$14a</title>
+</head>
+<body>
+  <form action="Problem$14b.jsp">
+    <%
+      for (int i = 0; i < 10; i++)
+      {
+          int x = (int) ((Math.random() * 100) % 10);
+          int y = (int) ((Math.random() * 100) % 10);
+          out.println(x + " + " + y + " = ");
+          out.println("<input type='text' name='answer"+i+"'> <br>");
+          out.println("<input hidden type='text' name='x"+i+"' value='"+ x + "'>");
+          out.println("<input hidden type='text' name='y"+i+"' value='" + y + "'>");
+      }
+    %>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<html>
+<head>
+    <title>Problem$14b</title>
+</head>
+<body>
+    <%
+        int correctCount = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            int x = Integer.parseInt(request.getParameter("x"+i));
+            int y = Integer.parseInt(request.getParameter("y"+i));
+            int answer = Integer.parseInt(request.getParameter("answer"+i));
+            if (x + y == answer)
+            {
+                correctCount++;
+                out.println(x + " + " + y + " = " + answer + " Correct<br>");
+            }
+            else
+                out.println(x + " + " + y + " = " + answer + " Wrong<br>");
+        }
+        out.println("the total correct count is " + correctCount);
+    %>
+</body>
+</html>
